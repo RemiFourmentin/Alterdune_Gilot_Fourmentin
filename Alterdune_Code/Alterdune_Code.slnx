@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Alterdune_Code/Alterdune_Code.vcxproj" />
+  <Project Path="Alterdune_Code/Alterdune_Code.vcxproj" Id="91d05f96-3302-4a08-934d-de1610bb08e2" />
 </Solution>
