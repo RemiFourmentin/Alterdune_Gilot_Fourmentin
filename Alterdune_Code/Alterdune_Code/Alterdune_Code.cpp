@@ -28,3 +28,5 @@ void Partie() {
     items.close();
 }
 // test maxence
+
+// test 2 branche commit slnx
