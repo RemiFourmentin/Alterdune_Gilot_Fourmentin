@@ -4,8 +4,90 @@
 #include <string>
 #include "item.h"
 #include "monster.h"
+#include "Joueur.h"
 using namespace std;
 
+void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters);
+
+void Bestiaire(Joueur j, Item* tabitems, Monster* tabmonsters){
+
+	std::cout << "BESTIAIRE" << endl << endl;
+	for (int i = 0; i < j.getBestiaire()->getCompteur(); i++) {
+		j.getBestiaire()[i].afficherMonster();
+	}
+	cout << endl << endl << "--Quitter [Q]";
+	char c = ' ';
+	while (c != 'Q') {
+		cin >> c;
+	}
+	system("cls");
+	MenuPrincipal(j, tabitems, tabmonsters);
+}
+
+void Combat(Joueur j, Item* tabitems, Monster* tabmonsters){}
+
+void Statistiques(Joueur j, Item* tabitems, Monster* tabmonsters) {
+
+	cout << "STATISTIQUES " << j.getNom() << endl << endl;
+	j.afficherStatistiques();
+	cout << endl << endl << "--Quitter [Q]";
+	char c = ' ';
+	while (c != 'Q') {
+		cin >> c;
+	}
+	system("cls");
+	MenuPrincipal(j, tabitems, tabmonsters);
+}
+
+void Items(Joueur j, Item* tabitems, Monster* tabmonsters) {
+
+	std::cout << "INVENTAIRE ITEMS" << endl << endl;
+	for (int i = 0; i < j.getListeItems()->getCompteur(); i++) {
+		j.getListeItems()[i].afficherItem();
+	}
+	cout << endl << endl<< "--Quitter [Q]";
+	char c = ' ';
+	while (c != 'Q') {
+		cin >> c;
+	}
+	system("cls");
+	MenuPrincipal(j, tabitems, tabmonsters);
+}
+
+void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters) {
+
+	char c = ' ';
+	while (c != 'Q') {
+		std::cout << "MENU PRINCIPAL" << endl << endl;
+		std::cout << "--Bestiaire [B]" << endl << "--Demarrer un combat [D]" << endl << "--Statistiques du personnage [S]" << endl << "--Items [I]" << endl << "--Quitter [Q]"<<endl<<endl;
+		cin >> c;
+		system("cls");
+		switch (c) {
+		case 'B':
+			Bestiaire(j, tabitems, tabmonsters);
+			break;
+
+		case 'D':
+			Combat(j, tabitems, tabmonsters);
+			break;
+
+		case 'S':
+			Statistiques(j, tabitems, tabmonsters);
+			break;
+
+		case 'I':
+			Items(j, tabitems, tabmonsters);
+			break;
+
+		case 'Q':
+			std::cout << "FIN DU PROGRAMME";
+			break;
+
+		default:
+			break;
+		}
+	}
+}
 
 Item* RecupItems() {
 	ifstream items("../../items.csv");
@@ -17,7 +99,7 @@ Item* RecupItems() {
 	Item* tabitems = new Item[lcompt];
 	ligne = "";
 	int i = 0;
-	while(getline(items, ligne)) {
+	while (getline(items, ligne)) {
 		Item it(ligne);
 		tabitems[i] = it;
 		i++;
@@ -47,25 +129,17 @@ Monster* RecupMonsters() {
 	return tabmonsters;
 }
 
-void Partie() {
-	cout << "nom du joueur: " << endl;
-	string nomjoueur = "";
-	cin >> nomjoueur;
-	cout << endl;
+void LancementJeu() {
+	std::cout << "saisissez le nom de votre personnage: " << endl;
+	string nom;
+	cin >> nom;
+	Joueur j(nom);
 	Item* tabitems = RecupItems();
-	cout << "Items:" << endl;
-	for (int i = 0; i < tabitems->getCompteur(); i++) {
-		tabitems[i].afficherItem();
-	}
-	cout << endl;
 	Monster* tabmonsters = RecupMonsters();
-	cout << "Monstres:" << endl;
-	for (int i = 0; i < tabmonsters->getCompteur(); i++) {
-		tabmonsters[i].afficherMonster();
-	}
+	system("cls");
+	MenuPrincipal(j, tabitems, tabmonsters);
 }
 
-
 int main() {
-    Partie();
+	LancementJeu();
 }
