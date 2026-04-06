@@ -10,7 +10,7 @@ class Monster
 private:
 	string categorie;
 	string nom;
-	int statistiques[3];
+	int statistiques[3]; //hp, atk, def
 	int mercyGoal;
 	string act[4];
 	int compteur;
