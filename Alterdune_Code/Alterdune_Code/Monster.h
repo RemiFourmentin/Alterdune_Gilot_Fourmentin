@@ -10,7 +10,8 @@ class Monster
 private:
 	string categorie;
 	string nom;
-	int statistiques[3]; //hp, atk, def
+	int statistiques[3]; //hpmax, atk, def
+	int hp;
 	int mercyGoal;
 	string act[4];
 	int compteur;
@@ -32,15 +33,26 @@ public:
 		for (int i = 0; i < 4; i++) {
 			getline(ss, this->act[i], ';');
 		}
+		this->hp = this->statistiques[0];
 		this->compteur = -1;
 	}
 
 	string getCategorie() { return this->categorie; }
 	string getNom() { return this->nom; }
 	int* getStatistiques() { return this->statistiques; }
+	int getHp() { return this->hp; }
 	int getMercyGoal() { return this->mercyGoal; }
 	string* getAct() { return this->act; }
 	int getCompteur() { return this->compteur; }
+
+	void Degats(int degats) {
+		if (this->hp - degats >= 0) {
+			this->hp = this->hp - degats;
+		}
+		else {
+			this->hp == 0;
+		}
+	}
 
 	void setCompteur(int compteur) { this->compteur = compteur; }
 
