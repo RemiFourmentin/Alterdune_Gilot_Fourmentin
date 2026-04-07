@@ -16,7 +16,7 @@ public:
 		this->fin = false;
 	}
 
-	bool FinCombat() {
+	void FinCombat() {
 		if (j.getHp() > 0 || monstre.getHp() > 0 || j.getStatistiques()[3] < monstre.getMercyGoal()) {
 			this->fin = true;
 		}
@@ -45,5 +45,7 @@ public:
 	void UseItem() {}
 
 	void Mercy() {}
+
+	bool getFin() { return this->fin; }
 };
 
