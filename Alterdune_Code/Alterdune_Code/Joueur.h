@@ -20,6 +20,8 @@ private:
 	Monster* bestiaire;
 
 public:
+	Joueur(){}
+
 	Joueur(string nom) { 
 		this->nom = nom;
 		this->statistiques[0] = 100;

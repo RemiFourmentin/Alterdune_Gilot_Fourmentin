@@ -7,55 +7,35 @@
 #include "Joueur.h"
 #include <cstdlib>
 #include <ctime>
+#include "Combat.h"
 using namespace std;
 
 void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters);
 
-void Fight(Joueur j, Item* tabitems, Monster* tabmonsters, Monster monstre) {
-	int degats = rand() % monstre.getStatistiques()[0];
-	if (degats == 0) {
-		cout << "Raté... " << monstre.getNom() << " ne prend aucun degats";
-	}
-	if (degats > monstre.getStatistiques()[0] * 0.8 && monstre.getHp() > monstre.getStatistiques()[0] * 0.6) {
-		cout << "Arghh... " << monstre.getNom() << " a ete tranche dans le vif";
-	}
-	monstre.Degats(degats);
-	if (monstre.getHp() == 0) {
-		j.Tue(monstre);
-	}
-}
-
-void Act(Joueur j, Item* tabitems, Monster* tabmonsters, Monster monstre){
-
-}
-
-void UseItem(Joueur j, Item* tabitems, Monster* tabmonsters, Monster monstre){}
-
-void Mercy(Joueur j, Item* tabitems, Monster* tabmonsters, Monster monstre) {}
-
-void Combat(Joueur j, Item* tabitems, Monster* tabmonsters){
+void Partie(Joueur j, Item* tabitems, Monster* tabmonsters){
 	int random = rand() % tabmonsters->getCompteur();
 	Monster monstre = tabmonsters[random];
+	Combat comb(monstre, j);
 	char c = ' ';
-	while (j.getHp() > 0 || monstre.getHp() > 0 || j.getStatistiques()[3] < monstre.getMercyGoal()) {
-		cout << "FIGHT [F]" << endl << "ACT [A]" << endl << "ITEM [I]" << endl << "Mercy [M]" << endl;
+	while (!comb.FinCombat()) {
+		comb.afficherMenu();
 		cin >> c;
 		system("cls");
 		switch(c){
 			case 'F':
-				Fight(j, tabitems, tabmonsters, monstre);
+				comb.Fight();
 				break;
 
 			case 'A':
-				Act(j, tabitems, tabmonsters, monstre);
+				comb.Act();
 				break;
 
 			case 'I':
-				UseItem(j, tabitems, tabmonsters, monstre);
+				comb.UseItem();
 				break;
 
 			case 'M':
-				Mercy(j, tabitems, tabmonsters, monstre);
+				comb.Mercy();
 				break;
 
 			default:
@@ -121,7 +101,7 @@ void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters) {
 			break;
 
 		case 'D':
-			Combat(j, tabitems, tabmonsters);
+			Partie(j, tabitems, tabmonsters);
 			break;
 
 		case 'S':

@@ -132,11 +132,13 @@ xcopy /Y "$(ProjectDir)monters.csv" "$(OutDir)"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Alterdune_Code.cpp" />
+    <ClCompile Include="Combat.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="Monster.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Combat.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Joueur.h" />
     <ClInclude Include="Monster.h" />
