@@ -111,8 +111,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(ProjectDir)items.csv" "$(OutDir)"
-xcopy /Y "$(ProjectDir)monters.csv" "$(OutDir)"</Command>
+      <Command>xcopy /Y "$(ProjectDir)..\..\items.csv" "$(OutDir)"
+xcopy /Y "$(ProjectDir)..\..\monsters.csv" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

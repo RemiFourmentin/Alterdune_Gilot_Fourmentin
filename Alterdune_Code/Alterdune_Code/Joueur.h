@@ -32,7 +32,7 @@ public:
 		this->victoires = 0;
 		this->tues = 0;
 		this->epargnes = 0;
-		Monster* bestiaire;
+		Monster* bestiaire = new Monster[0];
 		bestiaire->setCompteur(0);
 		this->bestiaire = bestiaire;
 	}

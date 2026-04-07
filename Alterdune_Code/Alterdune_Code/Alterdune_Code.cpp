@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <ctime>
 #include "Combat.h"
+
+#include <filesystem>
 using namespace std;
 
 void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters);
@@ -17,7 +19,7 @@ void Partie(Joueur j, Item* tabitems, Monster* tabmonsters){
 	Monster monstre = tabmonsters[random];
 	Combat comb(monstre, j);
 	char c = ' ';
-	while (!comb.FinCombat()) {
+	while (!comb.getFin()) {
 		comb.afficherMenu();
 		cin >> c;
 		system("cls");
@@ -123,7 +125,7 @@ void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters) {
 }
 
 Item* RecupItems() {
-	ifstream items("../../items.csv");
+	ifstream items("../../../items.csv");
 	string ligne;
 	int lcompt = 0;
 	while (getline(items, ligne)) { lcompt++; }
@@ -143,7 +145,7 @@ Item* RecupItems() {
 }
 
 Monster* RecupMonsters() {
-	ifstream monsters("../../monsters.csv");
+	ifstream monsters("../../../monsters.csv");
 	string ligne;
 	int lcompt = 0;
 	while (getline(monsters, ligne)) { lcompt++; }
