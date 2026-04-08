@@ -1,0 +1,85 @@
+@startuml
+
+class Item {
+  - nom : string
+  - type : string
+  - valeur : int
+  - quantite : int
+  - compteur : int
+  + Item()
+  + Item(ligne : string)
+  + getNom() : string
+  + getType() : string
+  + getValeur() : int
+  + getQuantite() : int
+  + getCompteur() : int
+  + setCompteur(compteur : int) : void
+  + afficherItem() : void
+}
+
+class Joueur {
+  - nom : string
+  - statistiques : int[4]
+  - hp : int
+  - listeItems : Item*
+  - victoires : int
+  - tues : int
+  - epargnes : int
+  - bestiaire : Monster*
+  + Joueur(nom : string)
+  + getNom() : string
+  + getStatistiques() : int*
+  + getHp() : int
+  + getListeItems() : Item*
+  + getVictoire() : int
+  + getTues() : int
+  + getEpagnes() : int
+  + getBestiaire() : Monster*
+  + AjouterMonstre(monstre : Monster) : void
+  + Tue(monstre : Monster) : void
+  + Epargne(monstre : Monster) : void
+  + afficherStatistiques() : void
+}
+
+class Monster {
+  - categorie : string
+  - nom : string
+  - statistiques : int[3]
+  - hp : int
+  - mercyGoal : int
+  - act : string[4]
+  - compteur : int
+  + Monster()
+  + Monster(ligne : string)
+  + getCategorie() : string
+  + getNom() : string
+  + getStatistiques() : int*
+  + getHp() : int
+  + getMercyGoal() : int
+  + getAct() : string*
+  + getCompteur() : int
+  + Degats(degats : int) : void
+  + setCompteur(compteur : int) : void
+  + afficherMonster() : void
+}
+
+class Combat {
+  - monstre : Monster
+  - j : Joueur
+  - fin : bool
+  + Combat(monstre : Monster, j : Joueur)
+  + FinCombat() : bool
+  + afficherMenu() : void
+  + Fight() : void
+  + Act() : void
+  + UseItem() : void
+  + Mercy() : void
+}
+
+Joueur "1" *-- "*" Item : possède >
+Joueur "1" *-- "*" Monster : enregistre dans le bestiaire >
+Joueur "1" *-- "1" Monster : affronte >
+
+Combat "1" *-- "1" Joueur : inclut >
+Combat "1" *-- "1" Monster : inclut >
+@enduml
