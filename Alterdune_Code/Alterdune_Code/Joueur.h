@@ -32,7 +32,7 @@ public:
 		this->victoires = 0;
 		this->tues = 0;
 		this->epargnes = 0;
-		Monster* bestiaire = new Monster[0];
+		Monster* bestiaire = new Monster[1];
 		bestiaire->setCompteur(0);
 		this->bestiaire = bestiaire;
 	}
@@ -48,11 +48,11 @@ public:
 
 	void AjouterMonstre(Monster monstre) {
 		Monster* bestiaire = new Monster[this->bestiaire->getCompteur() + 1];
-		bestiaire->setCompteur(this->bestiaire->getCompteur() + 1);
 		for (int i = 0; i < this->bestiaire->getCompteur(); i++) {
 			bestiaire[i] = this->bestiaire[i];
 		}
 		bestiaire[this->bestiaire->getCompteur()] = monstre;
+		bestiaire->setCompteur(this->bestiaire->getCompteur() + 1);
 		this->bestiaire = bestiaire;
 	}
 
