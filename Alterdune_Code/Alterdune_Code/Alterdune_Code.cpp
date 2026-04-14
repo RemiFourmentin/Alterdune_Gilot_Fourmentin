@@ -58,7 +58,6 @@ void Bestiaire(Joueur j, Item* tabitems, Monster* tabmonsters) {
 		cin >> c;
 	}
 	system("cls");
-	MenuPrincipal(j, tabitems, tabmonsters);
 }
 
 void Statistiques(Joueur j, Item* tabitems, Monster* tabmonsters) {
@@ -71,7 +70,6 @@ void Statistiques(Joueur j, Item* tabitems, Monster* tabmonsters) {
 		cin >> c;
 	}
 	system("cls");
-	MenuPrincipal(j, tabitems, tabmonsters);
 }
 
 void Items(Joueur j, Item* tabitems, Monster* tabmonsters) {
@@ -86,7 +84,6 @@ void Items(Joueur j, Item* tabitems, Monster* tabmonsters) {
 		cin >> c;
 	}
 	system("cls");
-	MenuPrincipal(j, tabitems, tabmonsters);
 }
 
 void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters) {
@@ -95,7 +92,9 @@ void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters) {
 	while (c != 'Q') {
 		std::cout << "MENU PRINCIPAL" << endl << endl;
 		std::cout << "--Bestiaire [B]" << endl << "--Demarrer un combat [D]" << endl << "--Statistiques du personnage [S]" << endl << "--Items [I]" << endl << "--Quitter [Q]"<<endl<<endl;
-		cin >> c;
+		string entree = "";
+		cin >> entree;
+		c = entree[0];
 		system("cls");
 		switch (c) {
 		case 'B':
