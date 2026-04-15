@@ -12,9 +12,9 @@
 #include <filesystem>
 using namespace std;
 
-void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters);
+void MenuPrincipal(Joueur& j, Item* tabitems, Monster* tabmonsters);
 
-void Partie(Joueur j, Item* tabitems, Monster* tabmonsters){
+void Partie(Joueur& j, Item* tabitems, Monster* tabmonsters){
 	int random = rand() % tabmonsters->getCompteur();
 	Monster monstre = tabmonsters[random];
 	Combat comb(monstre, j);
@@ -46,7 +46,7 @@ void Partie(Joueur j, Item* tabitems, Monster* tabmonsters){
 	}
 }
 
-void Bestiaire(Joueur j, Item* tabitems, Monster* tabmonsters) {
+void Bestiaire(Joueur& j, Item* tabitems, Monster* tabmonsters) {
 
 	std::cout << "BESTIAIRE" << endl << endl;
 	for (int i = 0; i < j.getBestiaire()->getCompteur(); i++) {
@@ -60,7 +60,7 @@ void Bestiaire(Joueur j, Item* tabitems, Monster* tabmonsters) {
 	system("cls");
 }
 
-void Statistiques(Joueur j, Item* tabitems, Monster* tabmonsters) {
+void Statistiques(Joueur& j, Item* tabitems, Monster* tabmonsters) {
 
 	cout << "STATISTIQUES " << j.getNom() << endl << endl;
 	j.afficherStatistiques();
@@ -72,7 +72,7 @@ void Statistiques(Joueur j, Item* tabitems, Monster* tabmonsters) {
 	system("cls");
 }
 
-void Items(Joueur j, Item* tabitems, Monster* tabmonsters) {
+void Items(Joueur& j, Item* tabitems, Monster* tabmonsters) {
 
 	std::cout << "INVENTAIRE ITEMS" << endl << endl;
 	for (int i = 0; i < j.getListeItems()->getCompteur(); i++) {
@@ -86,7 +86,7 @@ void Items(Joueur j, Item* tabitems, Monster* tabmonsters) {
 	system("cls");
 }
 
-void MenuPrincipal(Joueur j, Item* tabitems, Monster* tabmonsters) {
+void MenuPrincipal(Joueur& j, Item* tabitems, Monster* tabmonsters) {
 
 	char c = ' ';
 	while (c != 'Q') {
