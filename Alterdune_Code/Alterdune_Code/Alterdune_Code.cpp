@@ -177,5 +177,4 @@ void LancementJeu() {
 
 int main() {
 	LancementJeu();
-	//c'est la branche a caca
 }
